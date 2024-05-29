@@ -6,7 +6,7 @@ const io = require('socket.io')(server);
 const fs = require('fs');
 const path = require('path');
 
-const songsFolder = './songs';
+const songsFolder = '../songs';
 
 app.get('/set-list', async (req, res) => {
     try {
