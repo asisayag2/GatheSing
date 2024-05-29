@@ -5,6 +5,7 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 
 const songsFolder = './songs';
 
@@ -216,9 +217,32 @@ const songsFolder = './songs';
 
 app.get('/set-list', async (req, res) => {
     try {
-      var dataArray = [];   
+      let data = '';
+      const url = "https://res.cloudinary.com/asisayagcloudinary/raw/upload/v1716984405/data.json";
+
+          
+      https.get(url, (response) => {
+        response.on('data', (chunk) => {
+          data += chunk;
+        });
+
+        // The whole response has been received.
+        response.on('end', () => {
+          try {
+            const jsonData = JSON.parse(data);
+            console.log(jsonData); // Output the JSON data
+            res.json(jsonData);
+            console.log("bye");
+          } catch (error) {
+            console.error('Error parsing JSON:', error);
+          }
+        });
+        }).on('error', (error) => {
+          console.error('Error fetching data:', error);
+        });
+      
       console.log("hi");
-        try {
+        /*try {
           const jsonData = fs.readFileSync("data.json", 'utf-8');
         
           // Parse JSON data into a JavaScript array
@@ -228,16 +252,15 @@ app.get('/set-list', async (req, res) => {
           console.log("kuku" + dataArray);
         } catch (error) {
           console.error('Error reading JSON file:', error);
-        }
+        }*/
         //const songStructures = await getSongStructuresFromFolder(songsFolder);
         //console.log("returning "+ songStructures)
         //res.send('Hi there!');
-        res.json(dataArray);
-        console.log("bye");
-      } catch (err) {
-        console.error(err);
-        res.status(500).send('Internal Server Error');
-      }
+      
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
 });
 
 
