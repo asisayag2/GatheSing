@@ -8,7 +8,7 @@ const path = require('path');
 
 const songsFolder = './songs';
 
-const songs =
+/*const songs =
   {
     "title": "Let Me Entertain You",
     "by": "Robbie Williams",
@@ -212,13 +212,27 @@ const songs =
     ]
   }
 
+  */
+
 app.get('/set-list', async (req, res) => {
     try {
-        console.log("hi");
+      var dataArray = [];   
+      console.log("hi");
+        try {
+          const jsonData = fs.readFileSync("./data.json", 'utf-8');
+        
+          // Parse JSON data into a JavaScript array
+          dataArray = JSON.parse(jsonData);
+        
+          // Log the data array (or use it as needed)
+          console.log("kuku" + dataArray);
+        } catch (error) {
+          console.error('Error reading JSON file:', error);
+        }
         //const songStructures = await getSongStructuresFromFolder(songsFolder);
         //console.log("returning "+ songStructures)
         //res.send('Hi there!');
-        res.json(songs);
+        res.json(dataArray);
         console.log("bye");
       } catch (err) {
         console.error(err);
