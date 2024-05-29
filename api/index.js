@@ -48,31 +48,6 @@ async function getSongStructuresFromFolder(folderPath) {
           console.error(`Error reading file ${filePath}: ${err}`);
         }
       }
-    
-
-
-
-    // function processFile(filePath) {
-    //   fs.readFile(filePath, 'utf8', (err, fileContent) => {
-    //     if (err) {
-    //       console.error(`Error reading file ${filePath}: ${err}`);
-    //       return;
-    //     }
-        
-    //     console.log("added content to array: "+songStructures);        
-    //   });
-    // }
-  
-    // console.log("going to process files in "+ folderPath);
-    // const files = fs.readdirSync(folderPath);
-  
-    // files.forEach(file => {
-    //     console.log("going to process file "+ file);
-    //   const filePath = path.join(folderPath, file);
-    //   processFile(filePath);
-    // });
-
-    // console.log("returning:" + songStructures);  
   }
 
 
