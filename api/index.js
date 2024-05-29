@@ -13,7 +13,8 @@ app.get('/set-list', async (req, res) => {
         console.log("hi");
         const songStructures = await getSongStructuresFromFolder(songsFolder);
         console.log("returning "+ songStructures)
-        res.json(songStructures);
+        res.send('Hi there!');
+        //res.json(songStructures);
         console.log("bye");
       } catch (err) {
         console.error(err);
