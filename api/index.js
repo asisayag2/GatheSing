@@ -219,7 +219,7 @@ app.get('/set-list', async (req, res) => {
       var dataArray = [];   
       console.log("hi");
         try {
-          const jsonData = fs.readFileSync("./data.json", 'utf-8');
+          const jsonData = fs.readFileSync("data.json", 'utf-8');
         
           // Parse JSON data into a JavaScript array
           dataArray = JSON.parse(jsonData);
